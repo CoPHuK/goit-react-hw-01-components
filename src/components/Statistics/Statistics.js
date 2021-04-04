@@ -2,12 +2,12 @@ import React from 'react';
 import propTypes from 'prop-types';
 import style from './Statistics.module.css';
 
-const Statistics = ({ stats }) => {
+const Statistics = ({ title, stats }) => {
   return (
     console.dir(stats),
     (
       <section className={style.statistics}>
-        <h2 className={style.title}>Upload stats</h2>
+        {title && <h2 className={title}>{title}</h2>}
         <ul className={style.stat_list}>
           {stats.map(stat => {
             const { id, label, percentage } = stat;
@@ -23,6 +23,10 @@ const Statistics = ({ stats }) => {
     )
   );
 };
+Statistics.defaultProps = {
+  title: '',
+};
+
 Statistics.propTypes = {
   stats: propTypes.arrayOf(
     propTypes.shape({
